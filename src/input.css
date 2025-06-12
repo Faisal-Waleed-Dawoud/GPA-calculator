@@ -1,0 +1,35 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@layer components {
+    .mode-toggle {
+        @apply absolute bg-white cursor-pointer rounded-full flex justify-center items-center translate-x-[-50%] translate-y-[-50%] top-[5%] left-[90%] w-[40px] h-[40px] hover:bg-indigo-900 hover:text-white duration-300 dark:text-violet-950 dark:bg-white
+    }
+
+    .card {
+        @apply absolute top-[50%] w-[393px] left-[50%] translate-x-[-50%] translate-y-[-50%] bg-[#f9f9f9] rounded-md p-4 shadow-md duration-300 hover:shadow-lg dark:bg-[#1D293D] dark:border-2 dark:border-indigo-400 dark:text-white dark:shadow-indigo-700 dark:shadow-md
+    }
+
+    .card .card-title {
+        @apply text-center text-2xl duration-300 font-bold my-2 bg-linear-to-r from-blue-300 to-blue-700 bg-clip-text text-transparent dark:text-white
+    }
+
+    .background {
+        @apply relative h-[100vh] bg-linear-to-t from-blue-200 to-blue-100 duration-300 dark:bg-linear-to-t dark:from-[#232C48] dark:to-[#232c48e6]
+    }
+    .custom-input {
+        @apply dark:outline-indigo-400 rounded-md p-1 outline-blue-200 outline-1 duration-300 focus:outline-4
+    }
+}
+
+@theme {
+    --color-light-purple: #C8c7ff;
+    --color-light-gray: #e9e9ff;
+    --color-dark-card: #1E293B;
+    --color-dark-input: #141B2D;
+    --color-dark-text: #F3F4F6;
+    --color-dark-placeholder: #A3B6DC;
+    --color-dark-border: #334155;
+    --color-gray-b: #bbb;
+}
