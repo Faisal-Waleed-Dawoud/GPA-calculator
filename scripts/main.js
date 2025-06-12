@@ -23,8 +23,8 @@ function Calculator() {
     let totalCreditHours = 0;
     
     grades.forEach((gradeInput, index) => {
-        const grade = Number(gradeInput.value);
-        const hour = Number(hours[index]?.value); 
+        const grade = +gradeInput.value;
+        const hour = +hours[index]?.value; 
 
         
 

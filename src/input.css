@@ -8,7 +8,7 @@
     }
 
     .card {
-        @apply absolute top-[50%] w-[393px] left-[50%] translate-x-[-50%] translate-y-[-50%] bg-[#f9f9f9] rounded-md p-4 shadow-md duration-300 hover:shadow-lg dark:bg-[#1D293D] dark:border-2 dark:border-indigo-400 dark:text-white dark:shadow-indigo-700 dark:shadow-md
+        @apply absolute top-[50%] w-[400px] left-[50%] translate-x-[-50%] translate-y-[-50%] bg-[#f9f9f9] rounded-md p-4 shadow-md duration-300 hover:shadow-lg dark:bg-[#1D293D] dark:border-1 dark:border-indigo-400 dark:text-white dark:shadow-indigo-700 dark:shadow-md
     }
 
     .card .card-title {
@@ -19,7 +19,7 @@
         @apply relative h-[100vh] bg-linear-to-t from-blue-200 to-blue-100 duration-300 dark:bg-linear-to-t dark:from-[#232C48] dark:to-[#232c48e6]
     }
     .custom-input {
-        @apply dark:outline-indigo-400 rounded-md p-1 outline-blue-200 outline-1 duration-300 focus:outline-4
+        @apply dark:outline-indigo-400 rounded-md p-1 outline-blue-200 outline-1 duration-300 focus:outline-4 dark:text-black dark:bg-[#ddd]
     }
 }
 
