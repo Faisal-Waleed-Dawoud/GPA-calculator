@@ -10,8 +10,10 @@
     --color-blue-100: oklch(93.2% 0.032 255.585);
     --color-blue-200: oklch(88.2% 0.059 254.128);
     --color-blue-300: oklch(80.9% 0.105 251.813);
+    --color-blue-500: oklch(62.3% 0.214 259.815);
     --color-blue-700: oklch(48.8% 0.243 264.376);
     --color-indigo-400: oklch(67.3% 0.182 276.935);
+    --color-indigo-500: oklch(58.5% 0.233 277.117);
     --color-indigo-700: oklch(45.7% 0.24 277.023);
     --color-indigo-900: oklch(35.9% 0.144 278.697);
     --color-violet-950: oklch(28.3% 0.141 291.089);
@@ -172,20 +174,17 @@
   }
 }
 @layer utilities {
-  .mx-auto {
-    margin-inline: auto;
-  }
   .flex {
     display: flex;
   }
   .grid {
     display: grid;
   }
-  .w-fit {
-    width: fit-content;
-  }
   .w-full {
     width: 100%;
+  }
+  .max-w-\[420px\] {
+    max-width: 420px;
   }
   .grow {
     flex-grow: 1;
@@ -199,8 +198,23 @@
   .flex-row {
     flex-direction: row;
   }
+  .flex-nowrap {
+    flex-wrap: nowrap;
+  }
+  .items-center {
+    align-items: center;
+  }
+  .justify-center {
+    justify-content: center;
+  }
+  .gap-2 {
+    gap: calc(var(--spacing) * 2);
+  }
   .gap-4 {
     gap: calc(var(--spacing) * 4);
+  }
+  .overflow-x-auto {
+    overflow-x: auto;
   }
   .rounded-md {
     border-radius: var(--radius-md);
@@ -217,6 +231,9 @@
   }
   .py-2 {
     padding-block: calc(var(--spacing) * 2);
+  }
+  .text-\[22px\] {
+    font-size: 22px;
   }
   .duration-300 {
     --tw-duration: 300ms;
@@ -269,7 +286,7 @@
 }
 @layer components {
   .mode-toggle {
-    position: absolute;
+    position: fixed;
     top: 5%;
     left: 90%;
     display: flex;
@@ -307,7 +324,7 @@
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 400px;
+    min-width: 420px;
     --tw-translate-x: -50%;
     translate: var(--tw-translate-x) var(--tw-translate-y);
     --tw-translate-y: -50%;
@@ -375,7 +392,7 @@
   }
   .background {
     position: relative;
-    height: 100vh;
+    height: 120vh;
     --tw-gradient-position: to top;
     @supports (background-image: linear-gradient(in lab, red, red)) {
       --tw-gradient-position: to top in oklab;
@@ -423,6 +440,57 @@
     }
     &:where(.dark, .dark *) {
       outline-color: var(--color-indigo-400);
+    }
+  }
+  .saved-grade {
+    display: flex;
+    flex-shrink: 0;
+    flex-grow: 0;
+    flex-basis: auto;
+    cursor: pointer;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: calc(var(--spacing) * 2);
+    border-radius: var(--radius-md);
+    background-color: #eee;
+    padding: calc(var(--spacing) * 3);
+    --tw-duration: 300ms;
+    transition-duration: 300ms;
+    &:hover {
+      @media (hover: hover) {
+        background-color: var(--color-blue-500);
+      }
+    }
+    &:where(.dark, .dark *) {
+      background-color: var(--color-indigo-500);
+    }
+    &:where(.dark, .dark *) {
+      &:hover {
+        @media (hover: hover) {
+          background-color: var(--color-white);
+        }
+      }
+    }
+  }
+  .hover-effect {
+    color: var(--color-blue-500);
+    --tw-duration: 300ms;
+    transition-duration: 300ms;
+    &:is(:where(.group):hover *) {
+      @media (hover: hover) {
+        color: var(--color-white);
+      }
+    }
+    &:where(.dark, .dark *) {
+      color: var(--color-white);
+    }
+    &:where(.dark, .dark *) {
+      &:is(:where(.group):hover *) {
+        @media (hover: hover) {
+          color: var(--color-indigo-500);
+        }
+      }
     }
   }
 }
