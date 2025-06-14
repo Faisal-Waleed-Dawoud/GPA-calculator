@@ -7,6 +7,7 @@
       "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
     --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
       "Courier New", monospace;
+    --color-green-400: oklch(79.2% 0.209 151.711);
     --color-blue-100: oklch(93.2% 0.032 255.585);
     --color-blue-200: oklch(88.2% 0.059 254.128);
     --color-blue-300: oklch(80.9% 0.105 251.813);
@@ -180,17 +181,35 @@
   .grid {
     display: grid;
   }
+  .table {
+    display: table;
+  }
   .w-full {
     width: 100%;
   }
   .max-w-\[420px\] {
     max-width: 420px;
   }
+  .flex-shrink {
+    flex-shrink: 1;
+  }
+  .flex-grow {
+    flex-grow: 1;
+  }
   .grow {
     flex-grow: 1;
   }
+  .border-collapse {
+    border-collapse: collapse;
+  }
   .cursor-pointer {
     cursor: pointer;
+  }
+  .resize {
+    resize: both;
+  }
+  .appearance-none {
+    appearance: none;
   }
   .grid-cols-1 {
     grid-template-columns: repeat(1, minmax(0, 1fr));
@@ -200,6 +219,9 @@
   }
   .flex-nowrap {
     flex-wrap: nowrap;
+  }
+  .flex-wrap {
+    flex-wrap: wrap;
   }
   .items-center {
     align-items: center;
@@ -219,6 +241,10 @@
   .rounded-md {
     border-radius: var(--radius-md);
   }
+  .border {
+    border-style: var(--tw-border-style);
+    border-width: 1px;
+  }
   .border-2 {
     border-style: var(--tw-border-style);
     border-width: 2px;
@@ -235,9 +261,73 @@
   .text-\[22px\] {
     font-size: 22px;
   }
+  .underline {
+    text-decoration-line: underline;
+  }
+  .outline {
+    outline-style: var(--tw-outline-style);
+    outline-width: 1px;
+  }
   .duration-300 {
     --tw-duration: 300ms;
     transition-duration: 300ms;
+  }
+  .not-valid\:border-2 {
+    &:not(*:valid) {
+      border-style: var(--tw-border-style);
+      border-width: 2px;
+    }
+  }
+  .not-valid\:border-s {
+    &:not(*:valid) {
+      border-inline-start-style: var(--tw-border-style);
+      border-inline-start-width: 1px;
+    }
+  }
+  .not-valid\:border-green-400 {
+    &:not(*:valid) {
+      border-color: var(--color-green-400);
+    }
+  }
+  .valid\:border {
+    &:valid {
+      border-style: var(--tw-border-style);
+      border-width: 1px;
+    }
+  }
+  .valid\:border-2 {
+    &:valid {
+      border-style: var(--tw-border-style);
+      border-width: 2px;
+    }
+  }
+  .valid\:border-s {
+    &:valid {
+      border-inline-start-style: var(--tw-border-style);
+      border-inline-start-width: 1px;
+    }
+  }
+  .valid\:border-green-400 {
+    &:valid {
+      border-color: var(--color-green-400);
+    }
+  }
+  .invalid\:border-2 {
+    &:invalid {
+      border-style: var(--tw-border-style);
+      border-width: 2px;
+    }
+  }
+  .invalid\:border-s {
+    &:invalid {
+      border-inline-start-style: var(--tw-border-style);
+      border-inline-start-width: 1px;
+    }
+  }
+  .invalid\:border-green-400 {
+    &:invalid {
+      border-color: var(--color-green-400);
+    }
   }
   .hover\:border-transparent {
     &:hover {
@@ -499,6 +589,11 @@
   inherits: false;
   initial-value: solid;
 }
+@property --tw-outline-style {
+  syntax: "*";
+  inherits: false;
+  initial-value: solid;
+}
 @property --tw-duration {
   syntax: "*";
   inherits: false;
@@ -629,15 +724,11 @@
   syntax: "*";
   inherits: false;
 }
-@property --tw-outline-style {
-  syntax: "*";
-  inherits: false;
-  initial-value: solid;
-}
 @layer properties {
   @supports ((-webkit-hyphens: none) and (not (margin-trim: inline))) or ((-moz-orient: inline) and (not (color:rgb(from red r g b)))) {
     *, ::before, ::after, ::backdrop {
       --tw-border-style: solid;
+      --tw-outline-style: solid;
       --tw-duration: initial;
       --tw-translate-x: 0;
       --tw-translate-y: 0;
@@ -666,7 +757,6 @@
       --tw-gradient-via-position: 50%;
       --tw-gradient-to-position: 100%;
       --tw-font-weight: initial;
-      --tw-outline-style: solid;
     }
   }
 }

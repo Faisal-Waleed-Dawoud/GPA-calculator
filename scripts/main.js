@@ -1,4 +1,9 @@
 let toggleBtn = document.querySelector(".mode-toggle")
+let completedCreditHours = document.getElementById("completed-credit-hours")
+let cumilativeGPA = document.getElementById("overall-gpa")
+let creditHours = 0
+let overallGPA = 0
+let totalPoints = 0
 
 function changeMode() {
     document.documentElement.classList.toggle("dark")
@@ -9,6 +14,25 @@ function changeClass(parent, element, desiredClass, oldClass) {
         parent.firstElementChild.classList.contains(desiredClass) ? parent.firstElementChild.classList.replace(desiredClass, oldClass) : parent.firstElementChild.classList.replace(oldClass, desiredClass)
     }
 }
+
+completedCreditHours.addEventListener("change", function(e) {
+    creditHours = +e.target.value
+    calculateTotalPoints()
+})
+
+cumilativeGPA.addEventListener("change", function(e) {
+    overallGPA = +e.target.value
+    calculateTotalPoints()
+})
+
+function incorrectValue(element, message) {
+    element.innerHTML = message
+}
+
+function calculateTotalPoints() {
+    totalPoints = (creditHours * overallGPA)
+}
+
 
 toggleBtn.addEventListener("click", function() {
     changeMode()
@@ -34,9 +58,9 @@ function Calculator() {
         }
         
     });
-
-    const GPA = totalCreditHours > 0 ? (totalWeightedPoints / totalCreditHours).toFixed(2) : "0.00";
-    window.alert(`GPA: ${GPA}`);
+    let totalGPA = (totalPoints + totalWeightedPoints) / (totalCreditHours + creditHours) 
+    const termGPA = totalCreditHours > 0 ? (totalWeightedPoints / totalCreditHours).toFixed(2) : "0.00";
+    window.alert(`Your Semester GPA is : ${termGPA}, Your Cumilative GPA is: ${totalGPA}`);
 }
 
 
