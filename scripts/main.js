@@ -112,3 +112,60 @@ const savedItmesButton = document.getElementById("SavedItems");
 savedItmesButton.addEventListener("click", () => {
     LoadFromLocalStorage();
 }) ;
+
+function add_row() {
+    const addRowButton = document.getElementById("add-row");
+    const container = document.getElementById("container");
+
+    addRowButton.addEventListener("click", function (e) {
+        e.preventDefault(); 
+
+        const row = document.createElement("div");
+        row.className = "flex gap-4 flex-row";
+        row.style = `margin-top: 1rem`;
+        row.innerHTML = `
+            <div class="grow">
+                <p>Course Name</p>
+                <input type="text" class="custom-input">
+            </div>
+            <div class="grow">
+                <p>Credit Hours</p>
+                <select name="hourse" class="w-full custom-input" required>
+                    <option value=""></option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                </select>
+            </div>
+            <div class="grow">
+                <p>Grade</p>
+                <select name="grade" class="w-full custom-input" required>
+                    <option value=""></option>
+                    <option value="4">A+</option>
+                    <option value="3.75">A</option>
+                    <option value="3.5">B+</option>
+                    <option value="3">B</option>
+                    <option value="2.5">C+</option>
+                    <option value="2">C</option>
+                    <option value="1.5">D+</option>
+                    <option value="1">D</option>
+                    <option value="0">F</option>
+                </select>
+            </div>
+            <div class="trash">
+                <i class="fa-solid fa-trash"></i>
+            </div>
+        `;
+
+        container.appendChild(row);
+
+        const trashBtn = row.querySelector(".trash");
+        trashBtn.addEventListener("click", () => {
+            row.remove(); // يحذف الصف كامل
+        });
+    });
+}
+
+// شغل الدالة بعد تحميل الصفحة
+document.addEventListener("DOMContentLoaded", add_row);

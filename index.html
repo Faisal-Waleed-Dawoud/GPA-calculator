@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GPA Caculator</title>
     <link rel="stylesheet" href="src/output.css">
+    <link rel="stylesheet" href="style.css">
 
 </head>
 <body>
@@ -16,244 +17,59 @@
             <h2 class="card-title">GPA Caculator</h2>
             <form class="grid gap-4 grid-cols-1">
                 <div class="flex gap-2 items-center overflow-x-auto max-w-[420px] flex-nowrap">
-                    <!-- Repeat this element when looping -->
                     <div id="SavedItems" class="saved-grade group">
                         <i class="fa-regular fa-file hover-effect text-[22px]"></i>
                         <p class="hover-effect">date of saving</p>
                     </div>
-                    <!-- Repeat the above element when looping -->
                 </div>
                 <div class="flex flex-row gap-4">
                     <div>
                         <p>Completed Credit Hours</p>
-                        <input type="text" class="custom-input" id="completed-credit-hours">
+                        <input type="number" class="custom-input" id="completed-credit-hours" min="1">
                     </div>
                     <div>
                         <p>Cumilative GPA</p>
-                        <input type="text" class="custom-input" id="overall-gpa">
+                        <input type="number" class="custom-input" id="overall-gpa" min="0" step="0.01">
                     </div>
                 </div>
-                <div class="flex gap-4 flex-row">
-                    <div class="grow">
-                        <p>Course Name</p>
-                        <input type="text" class="custom-input">
-                    </div>
-                    <div class="grow">
-                        <p>Credit Hours</p>
-                        <select name="hourse" id="" class="w-full custom-input">
-                            <option value=""></option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                        </select>
-                    </div>
-                    <div class="grow">
-                        <p>Grade</p>
-                        <select name="grade" id="" class="w-full custom-input">
-                            <option value=""></option>
-                            <option value="4">A+</option>
-                            <option value="3.75">A</option>
-                            <option value="3.5">B+</option>
-                            <option value="3">B</option>
-                            <option value="2.5">C+</option>
-                            <option value="2">C</option>
-                            <option value="1.5">D+</option>
-                            <option value="1">D</option>
-                            <option value="0">F</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="flex gap-4 flex-row">
-                    <div class="grow">
-                        <p>Course Name</p>
-                        <input type="text" class="custom-input">
-                    </div>
-                    <div class="grow">
-                        <p>Credit Hours</p>
-                        <select name="hourse" id="" class="w-full custom-input">
-                            <option value=""></option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                        </select>
-                    </div>
-                    <div class="grow">
-                        <p>Grade</p>
-                        <select name="grade" id="" class="w-full custom-input">
-                            <option value=""></option>
-                            <option value="4">A+</option>
-                            <option value="3.75">A</option>
-                            <option value="3.5">B+</option>
-                            <option value="3">B</option>
-                            <option value="2.5">C+</option>
-                            <option value="2">C</option>
-                            <option value="1.5">D+</option>
-                            <option value="1">D</option>
-                            <option value="0">F</option>
-                        </select>
+                <div id="container">
+                    <div class="flex gap-4 flex-row justify-center">
+                        <div class="grow">
+                            <p>Course Name</p>
+                            <input type="text" class="custom-input">
+                        </div>
+                        <div class="grow">
+                            <p>Credit Hours</p>
+                            <select name="hourse" id="" class="w-full custom-input" required>
+                                <option value=""></option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                            </select>
+                        </div>
+                        <div class="grow">
+                            <p>Grade</p>
+                            <select name="grade" id="" class="w-full custom-input" required>
+                                <option value=""></option>
+                                <option value="4">A+</option>
+                                <option value="3.75">A</option>
+                                <option value="3.5">B+</option>
+                                <option value="3">B</option>
+                                <option value="2.5">C+</option>
+                                <option value="2">C</option>
+                                <option value="1.5">D+</option>
+                                <option value="1">D</option>
+                                <option value="0">F</option>
+                            </select>
+                        </div>
                     </div>
                 </div>
-                <div class="flex gap-4 flex-row">
-                    <div class="grow">
-                        <p>Course Name</p>
-                        <input type="text" class="custom-input">
-                    </div>
-                    <div class="grow">
-                        <p>Credit Hours</p>
-                        <select name="hourse" id="" class="w-full custom-input">
-                            <option value=""></option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                        </select>
-                    </div>
-                    <div class="grow">
-                        <p>Grade</p>
-                        <select name="grade" id="" class="w-full custom-input">
-                            <option value=""></option>
-                            <option value="4">A+</option>
-                            <option value="3.75">A</option>
-                            <option value="3.5">B+</option>
-                            <option value="3">B</option>
-                            <option value="2.5">C+</option>
-                            <option value="2">C</option>
-                            <option value="1.5">D+</option>
-                            <option value="1">D</option>
-                            <option value="0">F</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="flex gap-4 flex-row">
-                    <div class="grow">
-                        <p>Course Name</p>
-                        <input type="text" class="custom-input">
-                    </div>
-                    <div class="grow">
-                        <p>Credit Hours</p>
-                        <select name="hourse" id="" class="w-full custom-input">
-                            <option value=""></option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                        </select>
-                    </div>
-                    <div class="grow">
-                        <p>Grade</p>
-                        <select name="grade" id="" class="w-full custom-input">
-                            <option value=""></option>
-                            <option value="4">A+</option>
-                            <option value="3.75">A</option>
-                            <option value="3.5">B+</option>
-                            <option value="3">B</option>
-                            <option value="2.5">C+</option>
-                            <option value="2">C</option>
-                            <option value="1.5">D+</option>
-                            <option value="1">D</option>
-                            <option value="0">F</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="flex gap-4 flex-row">
-                    <div class="grow">
-                        <p>Course Name</p>
-                        <input type="text" class="custom-input">
-                    </div>
-                    <div class="grow">
-                        <p>Credit Hours</p>
-                        <select name="hourse" id="" class="w-full custom-input">
-                            <option value=""></option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                        </select>
-                    </div>
-                    <div class="grow">
-                        <p>Grade</p>
-                        <select name="grade" id="" class="w-full custom-input">
-                            <option value=""></option>
-                            <option value="4">A+</option>
-                            <option value="3.75">A</option>
-                            <option value="3.5">B+</option>
-                            <option value="3">B</option>
-                            <option value="2.5">C+</option>
-                            <option value="2">C</option>
-                            <option value="1.5">D+</option>
-                            <option value="1">D</option>
-                            <option value="0">F</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="flex gap-4 flex-row">
-                    <div class="grow">
-                        <p>Course Name</p>
-                        <input type="text" class="custom-input">
-                    </div>
-                    <div class="grow">
-                        <p>Credit Hours</p>
-                        <select name="hourse" id="" class="w-full custom-input">
-                            <option value=""></option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                        </select>
-                    </div>
-                    <div class="grow">
-                        <p>Grade</p>
-                        <select name="grade" id="" class="w-full custom-input">
-                            <option value=""></option>
-                            <option value="4">A+</option>
-                            <option value="3.75">A</option>
-                            <option value="3.5">B+</option>
-                            <option value="3">B</option>
-                            <option value="2.5">C+</option>
-                            <option value="2">C</option>
-                            <option value="1.5">D+</option>
-                            <option value="1">D</option>
-                            <option value="0">F</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="flex gap-4 flex-row">
-                    <div class="grow">
-                        <p>Course Name</p>
-                        <input type="text" class="custom-input">
-                    </div>
-                    <div class="grow">
-                        <p>Credit Hours</p>
-                        <select name="hourse" id="" class="w-full custom-input">
-                            <option value=""></option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                        </select>
-                    </div>
-                    <div class="grow">
-                        <p>Grade</p>
-                        <select name="grade" id="" class="w-full custom-input">
-                            <option value=""></option>
-                            <option value="4">A+</option>
-                            <option value="3.75">A</option>
-                            <option value="3.5">B+</option>
-                            <option value="3">B</option>
-                            <option value="2.5">C+</option>
-                            <option value="2">C</option>
-                            <option value="1.5">D+</option>
-                            <option value="1">D</option>
-                            <option value="0">F</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="flex gap-2 justify-center items-center">
+                <div class="flex gap-2 justify-center items-center" >
                     <input type="submit" value="Calculate" class="rounded-md border-2 border-blue-300 duration-300 py-2 px-4 hover:bg-blue-300 hover:text-white hover:border-transparent cursor-pointer dark:border-indigo-400 dark:hover:border-transparent dark:hover:bg-indigo-400">
                     <button type="button" class="save-btn rounded-md border-2 border-blue-300 duration-300 py-2 px-4 hover:bg-blue-300 hover:text-white hover:border-transparent cursor-pointer dark:border-indigo-400 dark:hover:border-transparent dark:hover:bg-indigo-400">Save</button>
                 </div>
+                <button id="add-row">إضافة</button>
             </form>
         </div>
     </div>
