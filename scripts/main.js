@@ -142,7 +142,6 @@ function LoadFromLocalStorage(key) {
 }
 
 const savedItmesButton = document.getElementById("SavedItems");
-<<<<<<< HEAD
 savedItmesButton.addEventListener("click", () => {
     LoadFromLocalStorage();
 }) ;
@@ -203,7 +202,6 @@ function add_row() {
 
 // شغل الدالة بعد تحميل الصفحة
 document.addEventListener("DOMContentLoaded", add_row);
-=======
 savedGrades.addEventListener("click", (e) => {
     for (let i = 0; i < localStorage.length; i++) {
         if (e.target.classList.contains(`item-${i+1}`)) {
@@ -211,4 +209,3 @@ savedGrades.addEventListener("click", (e) => {
         }
     }
 })
->>>>>>> 38afbb3480fb33b33c2243d8e3b46f5abd70386c
