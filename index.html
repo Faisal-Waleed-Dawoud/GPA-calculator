@@ -16,22 +16,17 @@
         <div class="card">
             <h2 class="card-title">GPA Caculator</h2>
             <form class="grid gap-4 grid-cols-1">
-                <div class="flex gap-2 items-center overflow-x-auto max-w-[420px] flex-nowrap">
+                <div class="flex gap-2 items-center overflow-x-auto max-w-[420px] flex-nowrap" id="items-container">
                     <div id="SavedItems" class="saved-grade group">
                         <i class="fa-regular fa-file hover-effect text-[22px]"></i>
                         <p class="hover-effect">date of saving</p>
                     </div>
                 </div>
-                <div class="flex flex-row gap-4">
-                    <div>
-                        <p>Completed Credit Hours</p>
-                        <input type="number" class="custom-input" id="completed-credit-hours" min="1">
-                    </div>
-                    <div>
-                        <p>Cumilative GPA</p>
-                        <input type="number" class="custom-input" id="overall-gpa" min="0" step="0.01">
-                    </div>
+                <div id="cumliative">
+                    <label for="isCumliative">Calculate The Cumliative ?</label>
+                    <input type="checkbox" name="isCumliative" value="yes">
                 </div>
+
                 <div id="container">
                     <div class="flex gap-4 flex-row justify-center">
                         <div class="grow">
@@ -40,18 +35,11 @@
                         </div>
                         <div class="grow">
                             <p>Credit Hours</p>
-                            <select name="hourse" id="" class="w-full custom-input" required>
-                                <option value=""></option>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                            </select>
+                            <input type="number" min="1" class="w-full custom-input" required>
                         </div>
                         <div class="grow">
                             <p>Grade</p>
                             <select name="grade" id="" class="w-full custom-input" required>
-                                <option value=""></option>
                                 <option value="4">A+</option>
                                 <option value="3.75">A</option>
                                 <option value="3.5">B+</option>

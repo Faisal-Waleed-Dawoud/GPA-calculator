@@ -9,6 +9,8 @@ const grades = document.querySelectorAll('.grow [name=grade]');
 const hours = document.querySelectorAll('.grow [name=hourse]');
 const courses = document.querySelectorAll('.grow [type=text]');
 let courseNumber = 0
+const checkBox = document.querySelector("input[type=checkbox]");
+const cumliativeContainer = document.querySelector("#cumliative");
 
 function changeMode() {
     document.documentElement.classList.toggle("dark")
@@ -20,15 +22,15 @@ function changeClass(parent, element, desiredClass, oldClass) {
     }
 }
 
-completedCreditHours.addEventListener("change", function(e) {
-    creditHours = +e.target.value
-    calculateTotalPoints()
-})
+// completedCreditHours.addEventListener("change", function(e) {
+//     creditHours = +e.target.value
+//     calculateTotalPoints()
+// })
 
-cumilativeGPA.addEventListener("change", function(e) {
-    overallGPA = +e.target.value
-    calculateTotalPoints()
-})
+// cumilativeGPA.addEventListener("change", function(e) {
+//     overallGPA = +e.target.value
+//     calculateTotalPoints()
+// })
 
 function calculateTotalPoints() {
     totalPoints = (creditHours * overallGPA)
@@ -60,10 +62,15 @@ function Calculator() {
 
     let totalGPA = (totalPoints + totalWeightedPoints) / (totalCreditHours + creditHours) 
     const termGPA = totalCreditHours > 0 ? (totalWeightedPoints / totalCreditHours).toFixed(2) : "0.00";
-    window.alert(`Your Semester GPA is : ${termGPA}, Your Cumilative GPA is: ${totalGPA}`);
+    ShowMessage(termGPA, totalGPA);
 }
 
-
+function ShowMessage(termGPA, totalGPA) {
+    const message = `Your Semester GPA is : ${termGPA}`; 
+    if (checkBox.checked)
+        message += `, Your Cumilative GPA is: ${totalGPA}`;
+    window.alert(message);
+}
 
 document.forms[0].addEventListener("submit", function (e) {
     e.preventDefault(); 
@@ -97,7 +104,7 @@ function creatingCoursesArray() {
 
 // Used to load elements depending on the local storage
 function loadSavedGrades() {
-    savedGrades.innerHTML = ""
+    savedGrades.innerHTML = ``
     for (let i = 0; i < localStorage.length; i++) {
         let date = gettingLocalStorageItems(`item-${i+1}`)
         savedGrades.innerHTML += `<div id="SavedItems" class="saved-grade item-${i+1} group">
@@ -163,18 +170,11 @@ function add_row() {
             </div>
             <div class="grow">
                 <p>Credit Hours</p>
-                <select name="hourse" class="w-full custom-input" required>
-                    <option value=""></option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                </select>
+                <input type="number" min="1" class="w-full custom-input" required>
             </div>
             <div class="grow">
                 <p>Grade</p>
                 <select name="grade" class="w-full custom-input" required>
-                    <option value=""></option>
                     <option value="4">A+</option>
                     <option value="3.75">A</option>
                     <option value="3.5">B+</option>
@@ -195,17 +195,43 @@ function add_row() {
 
         const trashBtn = row.querySelector(".trash");
         trashBtn.addEventListener("click", () => {
-            row.remove(); // يحذف الصف كامل
+            row.remove(); 
         });
     });
 }
-
-// شغل الدالة بعد تحميل الصفحة
 document.addEventListener("DOMContentLoaded", add_row);
+
+
 savedGrades.addEventListener("click", (e) => {
     for (let i = 0; i < localStorage.length; i++) {
         if (e.target.classList.contains(`item-${i+1}`)) {
             LoadFromLocalStorage(`item-${i+1}`)
         }
+    }
+})
+
+
+checkBox.addEventListener("click", () => {
+    
+    const feilds = document.createElement("div");
+    if (checkBox.checked) {
+        feilds.innerHTML = `
+            <div class="flex flex-row gap-4 cumliativeFeilds" >
+                <div>
+                    <p>Completed Credit Hours</p>
+                    <input type="number" class="custom-input" id="completed-credit-hours" min="1">
+                </div>
+                <div>
+                    <p>Cumilative GPA</p>
+                    <input type="number" class="custom-input" id="overall-gpa" min="0" step="0.01">
+                </div>
+            </div>
+            `;
+            cumliativeContainer.appendChild(feilds);
+    }
+
+    else {
+        const exsitedFeilds = document.querySelector(".cumliativeFeilds");
+        exsitedFeilds.remove();
     }
 })
