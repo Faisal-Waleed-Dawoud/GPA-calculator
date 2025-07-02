@@ -22,15 +22,7 @@ function changeClass(parent, element, desiredClass, oldClass) {
     }
 }
 
-// completedCreditHours.addEventListener("change", function(e) {
-//     creditHours = +e.target.value
-//     calculateTotalPoints()
-// })
 
-// cumilativeGPA.addEventListener("change", function(e) {
-//     overallGPA = +e.target.value
-//     calculateTotalPoints()
-// })
 
 function calculateTotalPoints() {
     totalPoints = (creditHours * overallGPA)
@@ -66,7 +58,7 @@ function Calculator() {
 }
 
 function ShowMessage(termGPA, totalGPA) {
-    const message = `Your Semester GPA is : ${termGPA}`; 
+    let message = `Your Semester GPA is : ${termGPA}`; 
     if (checkBox.checked)
         message += `, Your Cumilative GPA is: ${totalGPA}`;
     window.alert(message);
@@ -104,14 +96,14 @@ function creatingCoursesArray() {
 
 // Used to load elements depending on the local storage
 function loadSavedGrades() {
-    savedGrades.innerHTML = ``
-    for (let i = 0; i < localStorage.length; i++) {
-        let date = gettingLocalStorageItems(`item-${i+1}`)
-        savedGrades.innerHTML += `<div id="SavedItems" class="saved-grade item-${i+1} group">
-        <i class="fa-regular fa-file hover-effect text-[22px]"></i>
-        <p class="hover-effect">${date[date.length - 1].Date}</p>
-        </div>`
-    }
+    // savedGrades.innerHTML = ``
+    // for (let i = 0; i < localStorage.length; i++) {
+    //     let date = gettingLocalStorageItems(`item-${i+1}`)
+    //     savedGrades.innerHTML += `<div id="SavedItems" class="saved-grade item-${i+1} group">
+    //     <i class="fa-regular fa-file hover-effect text-[22px]"></i>
+    //     <p class="hover-effect">${date[date.length - 1].Date}</p>
+    //     </div>`
+    // }
 }
 // First page load
 if (localStorage.length > 0) {
@@ -125,27 +117,27 @@ mySaveButton.addEventListener("click", () => {
 
 // Used to read local storage objects
 function gettingLocalStorageItems(element) {
-    let unFormatedCourse = localStorage.getItem(element) 
-    let formatedCourse = JSON.parse('[' + unFormatedCourse.replace(/}{/g, '},{') + ']');
-    return formatedCourse
+    // let unFormatedCourse = localStorage.getItem(element) 
+    // let formatedCourse = JSON.parse('[' + unFormatedCourse.replace(/}{/g, '},{') + ']');
+    // return formatedCourse
 }
 
 // Used to write data from the local sotrage object
 function LoadFromLocalStorage(key) {
-    let coursesArray = gettingLocalStorageItems(key)
-    for (let i = 0; i < courses.length; i++) {
-        courses[i].value = ""
-        grades[i].value = ""
-        hours[i].value = ""
-    }
-    for (let i = 0; i < localStorage.length; i++) {
-        for (let j = 0; j < coursesArray.length - 1; j++) {
-            let {Name, Grade, Hours} = coursesArray[j]
-            Name !== null ? courses[j].value = Name : "";
-            if (Grade !== null) grades[j].value = Grade;
-            if (Hours !== null) hours[j].value = Hours;
-        }
-    }
+    // let coursesArray = gettingLocalStorageItems(key)
+    // for (let i = 0; i < courses.length; i++) {
+    //     courses[i].value = ""
+    //     grades[i].value = ""
+    //     hours[i].value = ""
+    // }
+    // for (let i = 0; i < localStorage.length; i++) {
+    //     for (let j = 0; j < coursesArray.length - 1; j++) {
+    //         let {Name, Grade, Hours} = coursesArray[j]
+    //         Name !== null ? courses[j].value = Name : "";
+    //         if (Grade !== null) grades[j].value = Grade;
+    //         if (Hours !== null) hours[j].value = Hours;
+    //     }
+    // }
 }
 
 const savedItmesButton = document.getElementById("SavedItems");
@@ -170,7 +162,7 @@ function add_row() {
             </div>
             <div class="grow">
                 <p>Credit Hours</p>
-                <input type="number" min="1" class="w-full custom-input" required>
+                <input type="number" name="hourse" min="1" class="w-full custom-input" required>
             </div>
             <div class="grow">
                 <p>Grade</p>
