@@ -220,6 +220,7 @@ checkBox.addEventListener("click", () => {
             </div>
             `;
             cumliativeContainer.appendChild(feilds);
+            calculateTotalPoints()
     }
 
     else {
