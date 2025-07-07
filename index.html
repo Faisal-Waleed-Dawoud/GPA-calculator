@@ -10,60 +10,65 @@
 </head>
 <body>
     <div class="background">
-        <div class="mode-toggle">
-            <i class="fa-solid fa-moon mode-toggle-btn"></i>
-        </div>
-        <div class="card">
-            <h2 class="card-title">GPA Caculator</h2>
-            <form class="grid gap-4 grid-cols-1">
-                <div class="flex gap-2 items-center overflow-x-auto max-w-[420px] flex-nowrap" id="items-container"></div>
-                <div id="cumliative">
-                    <label for="isCumliative">Calculate The Cumliative ?</label>
-                    <input type="checkbox" name="isCumliative" value="yes">
-                </div>
-                <div id="container">
-                    <div class="flex gap-4 flex-row justify-center">
-                        <div class="grow">
-                            <p>Course Name</p>
-                            <input type="text" class="custom-input">
+            <div class="mode-toggle">
+                <i class="fa-solid fa-moon mode-toggle-btn"></i>
+            </div>
+            <div class="card w-full">
+                <h2 class="card-title">GPA Caculator</h2>
+                <div class="flex gap-2 items-center overflow-x-auto flex-nowrap mt-4" id="items-container"></div>
+                <form class="">
+                    <div class="flex gap-4 md:flex-row flex-col items-center justify-between cumliativeFeilds mt-4">
+                        <div>
+                            <p class="text-sm">الساعات الدراسية السابقة</p>
+                            <input type="number" class="custom-input" id="completed-credit-hours" min="1" required>
                         </div>
-                        <div class="grow">
-                            <p>Credit Hours</p>
-                            <input type="number" name="hours" min="1" class="w-full custom-input " required>
-                        </div>
-                        <div class="grow">
-                            <p>Grade</p>
-                            <select name="grade" id="" class="w-full custom-input" required>
-                                <option value="4">A+ (4)</option>
-                                <option value="3.75">A (3.75)</option>
-                                <option value="3.5">B+ (3.5)</option>
-                                <option value="3">B (3)</option>
-                                <option value="2.5">C+ (2.5)</option>
-                                <option value="2">C (2)</option>
-                                <option value="1.5">D+ (1.5)</option>
-                                <option value="1">D (1)</option>
-                                <option value="0">F (0)</option>
-                            </select>
+                        <div>
+                            <p class="text-sm">المعدل التراكمي السابق</p>
+                            <input type="number" class="custom-input" id="overall-gpa" min="0" step="0.01" required>
                         </div>
                     </div>
-                </div>
-                <div class="flex gap-2 justify-center items-center" >
-                    <input type="submit" value="Calculate" class="rounded-md border-2 border-blue-300 duration-300 py-2 px-4 hover:bg-blue-300 hover:text-white hover:border-transparent cursor-pointer dark:border-indigo-400 dark:hover:border-transparent dark:hover:bg-indigo-400">
-                    <button type="button" class="save-btn rounded-md border-2 border-blue-300 duration-300 py-2 px-4 hover:bg-blue-300 hover:text-white hover:border-transparent cursor-pointer dark:border-indigo-400 dark:hover:border-transparent dark:hover:bg-indigo-400">Save</button>
-                </div>
-                <button id="add-row" type="button" class="rounded-md border-2 border-blue-300 duration-300 py-2 px-4 hover:bg-blue-300 hover:text-white hover:border-transparent cursor-pointer dark:border-indigo-400 dark:hover:border-transparent dark:hover:bg-indigo-400">إضافة كورس</button>
-            </form>
-            <div class="flex">
-                <div class="cumailative">
-                    <p>Your Cumulative GPA</p>
-                    <p id="cumlative-result"></p>
-                </div>
-                <div class="term">
-                    <p>Your Semster GPA</p>
-                    <p id="semster-result"></p>
+                    <div id="container">
+                        <div class="flex gap-4 justify-center mt-4">
+                            <div>
+                                <p class="text-sm">اسم المادة</p>
+                                <input type="text" class="custom-input course">
+                            </div>
+                            <div>
+                                <p class="text-sm text-nowrap">الساعات الدراسية</p>
+                                <input type="number" name="hours" min="1" class="w-full custom-input hours" required>
+                            </div>
+                            <div>
+                                <p class="text-sm">الدرجة</p>
+                                <select name="grade" id="" class="w-full custom-input grade" required>
+                                    <option value="4">A+ (4)</option>
+                                    <option value="3.75">A (3.75)</option>
+                                    <option value="3.5">B+ (3.5)</option>
+                                    <option value="3">B (3)</option>
+                                    <option value="2.5">C+ (2.5)</option>
+                                    <option value="2">C (2)</option>
+                                    <option value="1.5">D+ (1.5)</option>
+                                    <option value="1">D (1)</option>
+                                    <option value="0">F (0)</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex gap-2 justify-center items-center mt-4" >
+                        <button type="button" class="save-btn rounded-md border-2 border-blue-300 duration-300 py-2 px-4 hover:bg-blue-300 hover:text-white hover:border-transparent cursor-pointer dark:border-indigo-400 dark:hover:border-transparent dark:hover:bg-indigo-400">حفظ البيانات</button>
+                        <button id="add-row" type="button" class="rounded-md border-2 border-blue-300 duration-300 py-2 px-4 hover:bg-blue-300 hover:text-white hover:border-transparent cursor-pointer dark:border-indigo-400 dark:hover:border-transparent dark:hover:bg-indigo-400">إضافة كورس</button>
+                    </div>
+                </form>
+                <div class="flex w-full justify-between mt-4">
+                    <div class="cumailative text-center">
+                        <p>معدلك التراكمي</p>
+                        <p id="cumlative-result"></p>
+                    </div>
+                    <div class="term text-center">
+                        <p>معدلك للترم</p>
+                        <p id="semster-result"></p>
+                    </div>
                 </div>
             </div>
-        </div>
     </div>
     
 

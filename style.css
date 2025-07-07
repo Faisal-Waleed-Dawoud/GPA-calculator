@@ -13,4 +13,7 @@
     background-color: rgba(255, 99, 71, 0.21);
 }
 
-
+.card-title {
+    background-clip: text;
+    -webkit-background-clip: text;
+}
