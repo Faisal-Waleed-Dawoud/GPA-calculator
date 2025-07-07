@@ -24,8 +24,10 @@ function changeClass(parent, element, desiredClass, oldClass) {
 
 
 
-function calculateTotalPoints() {
-    totalPoints = (creditHours * overallGPA)
+function calculateTotalPoints(currentHourse, totalWeightedPoints) {
+    creditHours = +document.querySelector("#completed-credit-hours").value;
+    overallGPA = +document.querySelector("#overall-gpa").value;
+    return ((overallGPA * creditHours + totalWeightedPoints) / (creditHours + currentHourse)).toFixed(2)
 }
 
 
@@ -39,6 +41,7 @@ function Calculator() {
     const hours = document.querySelectorAll('[name=hourse]');
 
     let totalWeightedPoints = 0;
+    let gradesSum = 0;
     let totalCreditHours = 0;
     
     grades.forEach((gradeInput, index) => {
@@ -49,10 +52,16 @@ function Calculator() {
         if (!isNaN(grade) && !isNaN(hour)) {
             totalWeightedPoints += grade * hour;
             totalCreditHours += hour;
+            gradesSum += grade;
         }
     });
 
-    let totalGPA = (totalPoints + totalWeightedPoints) / (totalCreditHours + creditHours) 
+ 
+    let totalGPA;
+    if (checkBox.checked)
+    {
+        totalGPA = calculateTotalPoints(totalCreditHours, totalWeightedPoints);
+    }
     const termGPA = totalCreditHours > 0 ? (totalWeightedPoints / totalCreditHours).toFixed(2) : "0.00";
     ShowMessage(termGPA, totalGPA);
 }
@@ -220,7 +229,6 @@ checkBox.addEventListener("click", () => {
             </div>
             `;
             cumliativeContainer.appendChild(feilds);
-            calculateTotalPoints()
     }
 
     else {
