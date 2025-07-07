@@ -6,9 +6,9 @@ let overallGPA = 0
 let totalPoints = 0
 let savedGrades = document.getElementById("items-container")
 const grades = document.querySelectorAll('.grow [name=grade]');
-const hours = document.querySelectorAll('.grow [name=hourse]');
+const hours = document.querySelectorAll('.grow [name=hours]');
 const courses = document.querySelectorAll('.grow [type=text]');
-let courseNumber = 0
+let courseNumber = window.localStorage.length
 const checkBox = document.querySelector("input[type=checkbox]");
 const cumliativeContainer = document.querySelector("#cumliative");
 
@@ -38,8 +38,8 @@ toggleBtn.addEventListener("click", function() {
 
 function Calculator() {
     const grades = document.querySelectorAll('[name=grade]');
-    const hours = document.querySelectorAll('[name=hourse]');
-
+    const hours = document.querySelectorAll('[name=hours]');
+    
     let totalWeightedPoints = 0;
     let gradesSum = 0;
     let totalCreditHours = 0;
@@ -47,7 +47,7 @@ function Calculator() {
     grades.forEach((gradeInput, index) => {
         const grade = +gradeInput.value;
         const hour = +hours[index]?.value; 
-
+        
         
         if (!isNaN(grade) && !isNaN(hour)) {
             totalWeightedPoints += grade * hour;
@@ -63,19 +63,22 @@ function Calculator() {
         totalGPA = calculateTotalPoints(totalCreditHours, totalWeightedPoints);
     }
     const termGPA = totalCreditHours > 0 ? (totalWeightedPoints / totalCreditHours).toFixed(2) : "0.00";
-    ShowMessage(termGPA, totalGPA);
+    ShowMessage(termGPA, totalGPA.toFixed(2));
 }
 
 function ShowMessage(termGPA, totalGPA) {
-    let message = `Your Semester GPA is : ${termGPA}`; 
-    if (checkBox.checked)
-        message += `, Your Cumilative GPA is: ${totalGPA}`;
-    window.alert(message);
+    let cumlativeResult = document.getElementById("cumlative-result")
+    let termResult = document.getElementById("semster-result")
+    termResult.innerText = +termGPA
+    cumlativeResult.innerText = totalGPA
 }
 
-document.forms[0].addEventListener("submit", function (e) {
-    e.preventDefault(); 
-    Calculator();
+courses.forEach((course) => {
+    course.addEventListener("change", Calculator)
+})
+
+hours.forEach((hour) => {
+    hour.addEventListener("change", Calculator)
 })
 
 // Manages saving
@@ -87,31 +90,32 @@ function SaveToLocalStorage() {
 
 // Stores the objects in the local storage
 function creatingCoursesArray() {
+    const grades = document.querySelectorAll('.grow [name=grade]');
+    const courses = document.querySelectorAll('.grow [type=text]');
+    const hours = document.querySelectorAll('.grow [name=hours]');
     let savingDate = new Date
     let day = savingDate.getDate()
     let month = savingDate.getMonth() + 1
     let year = savingDate.getFullYear()
     let coursesArray = []
     grades.forEach((e, i) => {
-        if (courses[i].value.trim() && typeof courses[i].value.trim() !== undefined) {
             coursesArray.push(JSON.stringify({"Name" : courses[i].value.trim(), "Grade" : e.value, "Hours": hours[i].value}))
-        }
-    })
-    coursesArray.push(JSON.stringify({"Date": `${day}-${month}-${year}`}))
-    courseNumber += 1
-    return [coursesArray, courseNumber]
-}
-
-
-// Used to load elements depending on the local storage
+        })
+        coursesArray.push(JSON.stringify({"Date": `${day}-${month}-${year}`}))
+        courseNumber += 1
+        return [coursesArray, courseNumber]
+    }
+    
+    
+    // Used to load elements depending on the local storage
 function loadSavedGrades() {
-    savedGrades.innerHTML = ``
+    savedGrades.innerHTML = ""
     for (let i = 0; i < localStorage.length; i++) {
         let date = gettingLocalStorageItems(`item-${i+1}`)
         savedGrades.innerHTML += `<div id="SavedItems" class="saved-grade item-${i+1} group">
-        <i class="fa-regular fa-file hover-effect text-[22px]"></i>
-        <p class="hover-effect">${date[date.length - 1].Date}</p>
-        </div>`
+    <i class="fa-regular fa-file hover-effect text-[22px]"></i>
+    <p class="hover-effect">${date[date.length - 1].Date}</p>
+    </div>`
     }
 }
 // First page load
@@ -134,33 +138,39 @@ function gettingLocalStorageItems(element) {
 // Used to write data from the local sotrage object
 function LoadFromLocalStorage(key) {
     let coursesArray = gettingLocalStorageItems(key)
+    const courses = document.querySelectorAll('.grow [type=text]');
+    const hours = document.querySelectorAll('.grow [name=hours]');
+    const grades = document.querySelectorAll('.grow [name=grade]');
     for (let i = 0; i < courses.length; i++) {
         courses[i].value = ""
         grades[i].value = ""
         hours[i].value = ""
     }
-    for (let i = 0; i < localStorage.length; i++) {
         for (let j = 0; j < coursesArray.length - 1; j++) {
+            const grades = document.querySelectorAll('.grow [name=grade]');
+            const courses = document.querySelectorAll('.grow [type=text]');
+            const hours = document.querySelectorAll('.grow [name=hours]');
+            if (grades.length < coursesArray.length -1) {
+                createRow()
+            }
             let {Name, Grade, Hours} = coursesArray[j]
-            Name !== null ? courses[j].value = Name : "";
-            if (Grade !== null) grades[j].value = Grade;
-            if (Hours !== null) hours[j].value = Hours;
+            courses[j].value = Name;
+            grades[j].value = Grade;
+            hours[j].value = Hours;
         }
-    }
 }
 
-const savedItmesButton = document.getElementById("SavedItems");
-savedItmesButton.addEventListener("click", () => {
-    LoadFromLocalStorage();
-}) ;
 
 function add_row() {
     const addRowButton = document.getElementById("add-row");
-    const container = document.getElementById("container");
+    
+    addRowButton.addEventListener("click", createRow);
+}
+document.addEventListener("DOMContentLoaded", add_row);
 
-    addRowButton.addEventListener("click", function (e) {
-        e.preventDefault(); 
-
+function createRow() {
+    
+        const container = document.getElementById("container");
         const row = document.createElement("div");
         row.className = "flex gap-4 flex-row";
         row.style = `margin-top: 1rem`;
@@ -171,7 +181,7 @@ function add_row() {
             </div>
             <div class="grow">
                 <p>Credit Hours</p>
-                <input type="number" name="hourse" min="1" class="w-full custom-input" required>
+                <input type="number" name="hours" min="1" class="w-full custom-input" required>
             </div>
             <div class="grow">
                 <p>Grade</p>
@@ -192,16 +202,16 @@ function add_row() {
             </div>
         `;
 
+        row.querySelector('[name=grade]').addEventListener('change', Calculator);
+        row.querySelector('[name=hours]').addEventListener('change', Calculator);
+
         container.appendChild(row);
 
         const trashBtn = row.querySelector(".trash");
         trashBtn.addEventListener("click", () => {
             row.remove(); 
         });
-    });
-}
-document.addEventListener("DOMContentLoaded", add_row);
-
+    }
 
 savedGrades.addEventListener("click", (e) => {
     for (let i = 0; i < localStorage.length; i++) {
