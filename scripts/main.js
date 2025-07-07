@@ -63,14 +63,21 @@ function Calculator() {
         totalGPA = calculateTotalPoints(totalCreditHours, totalWeightedPoints);
     }
     const termGPA = totalCreditHours > 0 ? (totalWeightedPoints / totalCreditHours).toFixed(2) : "0.00";
-    ShowMessage(termGPA, totalGPA.toFixed(2));
+    ShowMessage(termGPA, totalGPA);
 }
 
 function ShowMessage(termGPA, totalGPA) {
-    let cumlativeResult = document.getElementById("cumlative-result")
-    let termResult = document.getElementById("semster-result")
-    termResult.innerText = +termGPA
-    cumlativeResult.innerText = totalGPA
+    // let cumlativeResult = document.getElementById("cumlative-result")
+    // let termResult = document.getElementById("semster-result")
+    // termResult.innerText = +termGPA
+    // cumlativeResult.innerText = totalGPA
+
+    let message = `Your GPA is ${termGPA}`;
+    if (checkBox.checked)
+    {
+        message += ` and Your Cumlative GPA is ${totalGPA}`;
+    }
+    window.alert(message);
 }
 
 courses.forEach((course) => {
