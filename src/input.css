@@ -4,11 +4,11 @@
 
 @layer components {
     .mode-toggle {
-        @apply fixed bg-white cursor-pointer rounded-full flex justify-center items-center translate-x-[-50%] translate-y-[-50%] top-[5%] left-[90%] w-[40px] h-[40px] hover:bg-indigo-900 hover:text-white duration-300 dark:text-violet-950 dark:bg-white
+        @apply fixed bg-white cursor-pointer rounded-full flex justify-center items-center -translate-x-1/2 -translate-y-1/2 top-[5%] left-[85%] w-[40px] h-[40px] hover:bg-indigo-900 hover:text-white duration-300 dark:text-violet-950 dark:bg-white
     }
 
     .card {
-        @apply absolute top-[50%] min-w-[420px] left-[50%] translate-x-[-50%] translate-y-[-50%] bg-[#f9f9f9] rounded-md p-4 shadow-md duration-300 hover:shadow-lg dark:bg-[#1D293D] dark:border-1 dark:border-indigo-400 dark:text-white dark:shadow-indigo-700 dark:shadow-md
+        @apply sm:max-w-[500px] overflow-x-auto absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] bg-[#f9f9f9] rounded-md p-4 shadow-md duration-300 hover:shadow-lg dark:bg-[#1D293D] dark:border-1 dark:border-indigo-400 dark:text-white dark:shadow-indigo-700 dark:shadow-md
     }
 
     .card .card-title {
@@ -27,17 +27,6 @@
     .hover-effect {
         @apply text-blue-500 group-hover:text-white duration-300 dark:group-hover:text-indigo-500 dark:text-white
     }
-}
-
-@theme {
-    --color-light-purple: #C8c7ff;
-    --color-light-gray: #e9e9ff;
-    --color-dark-card: #1E293B;
-    --color-dark-input: #141B2D;
-    --color-dark-text: #F3F4F6;
-    --color-dark-placeholder: #A3B6DC;
-    --color-dark-border: #334155;
-    --color-gray-b: #bbb;
 }
 
 
